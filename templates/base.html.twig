@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My app{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    {% endblock %}
+</head>
+<body>
+{# TODO Inclure le template de la barre de navigation 'navbar' #}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            {# TODO Créer un block nommé 'main' #}
+            <p>[Main block]</p>
+        </div>
+        <div class="col-md-3">
+            {# TODO Créer un block nommé 'side' #}
+            <p>[Side block]</p>
+        </div>
+    </div>
+    {% block body %}{% endblock %}
+</div>
+</body>
 </html>
