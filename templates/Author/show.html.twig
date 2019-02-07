@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+    {{ author.bio|raw }}
+
+    <hr>
+
+    <h2>Posts by {{ author.firstName }} {{ author.lastName }}</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h3>
+                    <a href="{{ path('post_show', {'slug': post.slug}) }}">
+                        {{ post.title }}
+                    </a>
+                </h3>
+                <p>{{ post.category.title }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

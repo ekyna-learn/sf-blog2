@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Routing\Annotation\Route;
+
 /**
  * Class CategoryController
  * @package App\Controller
@@ -9,19 +11,37 @@ namespace App\Controller;
  */
 class CategoryController extends AbstractController
 {
+    /**
+     * @Route("/categories", name="category_index")
+     */
     public function index()
     {
         $categories = $this->categoryRepository->findAll();
 
-        // TODO Rendu d'un template affichant la liste des catégories.
+        return $this->render('Category/index.html.twig', [
+            'categories' => $categories,
+        ]);
     }
 
+    /**
+     * @Route("/categories/{slug}", name="category_show")
+     */
     public function show($slug)
     {
         $category = $this->categoryRepository->findOneBySlug($slug);
 
         $posts = $this->postRepository->findByCategory($category);
 
-        // TODO Rendu d'un template affichant le détail de la catégorie, et la liste des articles (Post) associés.
+        return $this->render('Category/show.html.twig', [
+            'category' => $category,
+            'posts' => $posts,
+        ]);
+    }
+
+    public function menu()
+    {
+        return $this->render('Category/menu.html.twig', [
+            'categories' => $this->categoryRepository->findAll(),
+        ]);
     }
 }

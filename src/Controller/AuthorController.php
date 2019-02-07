@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Routing\Annotation\Route;
+
 /**
  * Class AuthorController
  * @package App\Controller
@@ -9,19 +11,37 @@ namespace App\Controller;
  */
 class AuthorController extends AbstractController
 {
+    /**
+     * @Route("/authors", name="author_index")
+     */
     public function index()
     {
         $authors = $this->authorRepository->findAll();
 
-        // TODO Rendu d'un template affichant la liste des auteurs.
+        return $this->render('Author/index.html.twig', [
+            'list_authors' => $authors,
+        ]);
     }
 
+    /**
+     * @Route("/authors/{slug}", name="author_show")
+     */
     public function show($slug)
     {
         $author = $this->authorRepository->findOneBySlug($slug);
 
         $posts = $this->postRepository->findByAuthor($author);
 
-        // TODO Rendu d'un template affichant le détail de l'auteur, et la liste des articles (Post) associés.
+        return $this->render('Author/show.html.twig', [
+            'author' => $author,
+            'posts' => $posts,
+        ]);
+    }
+
+    public function menu()
+    {
+        return $this->render('Author/menu.html.twig', [
+            'authors' => $this->authorRepository->findAll(),
+        ]);
     }
 }

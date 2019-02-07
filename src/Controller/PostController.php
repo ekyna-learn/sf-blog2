@@ -2,17 +2,24 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Routing\Annotation\Route;
+
 /**
- * Class TestController
+ * Class PostController
  * @package App\Controller
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class PostController extends AbstractController
 {
+    /**
+     * @Route("/{slug}", name="post_show")
+     */
     public function show($slug)
     {
         $post = $this->postRepository->findOneBySlug($slug);
 
-        // TODO Rendu d'un template affichant le détail de l'article (post)
+        return $this->render('Post/show.html.twig', [
+            'post' => $post,
+        ]);
     }
 }

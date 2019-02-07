@@ -12,6 +12,12 @@ class PageController extends Controller
      */
     public function home()
     {
-        return $this->render('Page/home.html.twig');
+        return $this->render('Page/home.html.twig', [
+            'foo' => 'bar',
+            'super_list' => [
+                'Bob',
+                'Eponge'
+            ],
+        ]);
     }
 }

@@ -8,16 +8,21 @@
     {% endblock %}
 </head>
 <body>
-{# TODO Inclure le template de la barre de navigation 'navbar' #}
+{% include "navbar.html.twig" %}
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            {# TODO Créer un block nommé 'main' #}
-            <p>[Main block]</p>
+            {% block main %}{% endblock %}
         </div>
         <div class="col-md-3">
-            {# TODO Créer un block nommé 'side' #}
-            <p>[Side block]</p>
+            {% block side %}
+                {{ render(controller(
+                    'App\\Controller\\CategoryController::menu'
+                )) }}
+                {{ render(controller(
+                    'App\\Controller\\AuthorController::menu'
+                )) }}
+            {% endblock %}
         </div>
     </div>
 </div>

@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <h1>{{ post.title }}</h1>
+    <p>
+        In <a href="{{ path('category_show', {'slug': post.category.slug}) }}">
+            <strong>{{ post.category.title }}</strong>
+        </a>,
+        by <a href="{{ path('author_show', {'slug': post.author.slug}) }}">
+            <em>{{ post.author.firstName }} {{ post.author.lastName }}</em>
+        </a>
+    </p>
+
+    <hr>
+
+    {{ post.content|raw }}
+{% endblock %}
