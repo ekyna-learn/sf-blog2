@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Class TestController
  * @package App\Controller
@@ -9,7 +11,7 @@ namespace App\Controller;
  */
 class PostController extends AbstractController
 {
-    public function show($slug)
+    public function show(string $slug): Response
     {
         $post = $this->postRepository->findOneBySlug($slug);
 

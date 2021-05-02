@@ -36,7 +36,6 @@ abstract class AbstractRepository
      * Returns the object data for the given index and id.
      *
      * @param string $type
-     * @param int    $id
      *
      * @return array
      */

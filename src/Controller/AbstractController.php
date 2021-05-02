@@ -5,14 +5,14 @@ namespace App\Controller;
 use App\Repository\AuthorRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as BaseController;
 
 /**
  * Class AbstractController
  * @package App\Controller
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-class AbstractController extends Controller
+class AbstractController extends BaseController
 {
     /**
      * @var CategoryRepository

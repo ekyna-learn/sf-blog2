@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Class CategoryController
  * @package App\Controller
@@ -9,14 +11,14 @@ namespace App\Controller;
  */
 class CategoryController extends AbstractController
 {
-    public function index()
+    public function index(): Response
     {
         $categories = $this->categoryRepository->findAll();
 
         // TODO Rendu d'un template affichant la liste des catégories.
     }
 
-    public function show($slug)
+    public function show(string $slug): Response
     {
         $category = $this->categoryRepository->findOneBySlug($slug);
 
